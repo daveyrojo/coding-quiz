@@ -13,7 +13,7 @@
 
 // loop idea for adding time to timer/reducing time from timer
 
-// var questions = document.getElementById("questions");
+// var questions = document.getElementByClass("questions");
 // var wrong = document.getElementById("wrong");
 // var score = 0;
 // var timer = 10 minutes;
@@ -35,15 +35,15 @@
             //return timer;
 
 //      function questionFunc() {
-//              for (let i = 0; i < questionAnswers.length; i++) {
-//         let button = questionAnswer[i];
-    //         if (button === true) {
-    //                score += 1;
-    //             timer = timer + 5;
-    //         } else {
-    //             timer = timer - 5;
-    //         }
-    //     }
+//         for (let i = 0; i < questionAnswers.length; i++) {
+//              let button = questionAnswer[i];
+        //         if (button === true) {
+        //                score += 1;
+        //             timer = timer + 5;
+        //         } else {
+        //             timer = timer - 5;
+        //         }
+        //     }
 //
 //     return timer;
 // }
@@ -64,3 +64,4 @@
             //             go to score page
             //     }
             // }
+ 
