@@ -3,12 +3,19 @@
     color: blue;
 } */
 
-body {
+body{
     text-align: center;
     justify-content: center;
     border: 5px solid black;
     margin: 20px;
     padding: 15px;
+}
+
+li {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: inline-block;
 }
 
 .answers button {
@@ -20,4 +27,8 @@ body {
     color: white;
     padding: 10px 24px;
     margin: 0 auto;
+}
+
+.high-score-list {
+    width: 50%;
 }

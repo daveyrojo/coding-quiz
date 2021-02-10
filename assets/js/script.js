@@ -12,26 +12,32 @@ console.log(wrongAnswer);
 //variable for correct answer
 var correctAnswer = document.querySelectorAll('.right');
 console.log(correctAnswer);
+//high score list
+var highScoreDiv = document.querySelector('.highScoreDiv');
 //variable for start button
 var startBtn = document.getElementById('start');
+var userInitials = document.getElementById('userInitials');
+var scoreButton = document.getElementById('scoreButton');
 var currentQuestion = -1;
 console.log(startBtn);
 var rightAnswer = 0;
 var wrongAnswer = 0;
 var scoreDiv = document.getElementById('totalScore');
 scoreDiv.style.display = "none";
+// pElement.style.display = "none";
+// highScoreTitle.style.display = "none";
 
-//hiding questions
-// questionArr[0].style.display = "none";
+highScoreDiv.style.display = "none";
 
-questionArr.forEach(function(element){
+questionArr.forEach(function (element) {
     element.style.display = "none";
 })
-startBtn.addEventListener("click", function(){
+
+startBtn.addEventListener("click", function () {
     startBtn.style.display = "none";
-    displayQuestions(); 
+    displayQuestions();
 });
-wrongEl.forEach(function(element){
+wrongEl.forEach(function (element) {
     element.addEventListener("click", incorrectAns)
 })
 
@@ -45,7 +51,7 @@ function displayQuestions() {
     if (currentQuestion < questionArr.length - 1) {
         currentQuestion++;
         questionArr[currentQuestion].style.display = "block";
-        
+
     }
 
     else {
@@ -66,6 +72,24 @@ function correctAns() {
 
 function displayScore() {
     scoreDiv.style.display = "block";
-    document.getElementById("userInitials").innerText = "score: " + rightAnswer;
-    
+    document.getElementById("userScore").innerText = "score: " + rightAnswer;
 }
+
+function savedScore() {
+
+}
+
+scoreButton.addEventListener('click', function () {
+    var user = userInitials.value;
+    var highScores = JSON.parse(localStorage.getItem('previousScores')) || []
+    highScores.push({
+        user: user,
+        score: rightAnswer
+    });
+    console.log(highScores);
+})
+
+
+
+
+
