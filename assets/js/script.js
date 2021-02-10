@@ -1,67 +1,71 @@
+//body element variable
+var bodyEl = document.querySelector('body');
+console.log(bodyEl);
+//array to store questions
+var questionArr = document.querySelectorAll('.question');
+console.log(questionArr);
+//variable for start button
+var startButton = document.getElementById("start");
+//variable for incorrect button
+var wrongEl = document.querySelectorAll('.wrong');
+console.log(wrongAnswer);
+//variable for correct answer
+var correctAnswer = document.querySelectorAll('.right');
+console.log(correctAnswer);
+//variable for start button
+var startBtn = document.getElementById('start');
+var currentQuestion = -1;
+console.log(startBtn);
+var rightAnswer = 0;
+var wrongAnswer = 0;
+var scoreDiv = document.getElementById('totalScore');
+scoreDiv.style.display = "none";
 
+//hiding questions
+// questionArr[0].style.display = "none";
 
-//testing to ensure html is linked
-// var h1 = document.getElementsByTagName("h1");
+questionArr.forEach(function(element){
+    element.style.display = "none";
+})
+startBtn.addEventListener("click", function(){
+    startBtn.style.display = "none";
+    displayQuestions(); 
+});
+wrongEl.forEach(function(element){
+    element.addEventListener("click", incorrectAns)
+})
 
-// console.log(h1);
+correctAnswer.forEach(function (element) {
+    element.addEventListener("click", correctAns)
+})
+function displayQuestions() {
+    if (currentQuestion >= 0) {
+        questionArr[currentQuestion].style.display = "none";
+    }
+    if (currentQuestion < questionArr.length - 1) {
+        currentQuestion++;
+        questionArr[currentQuestion].style.display = "block";
+        
+    }
 
-// Acitvites:
-    // 04 09/10 - timer
-    // 04 19/20 - animation
-    // 21/22 - textContent
-    // 04 21-26 - localStorage
+    else {
+        console.log('rightAnswer, wrongAnswer', rightAnswer, wrongAnswer);
+        displayScore();
+    }
+}
 
-// loop idea for adding time to timer/reducing time from timer
+function incorrectAns() {
+    wrongAnswer++;
+    displayQuestions();
+}
 
-// var questions = document.getElementByClass("questions");
-// var wrong = document.getElementById("wrong");
-// var score = 0;
-// var timer = 10 minutes;
+function correctAns() {
+    rightAnswer++;
+    displayQuestions();
+}
 
-
-//first we will need to declare variables
-    //for question array
-        //for buttons within question array [array in an array]
-        //for score/end quiz page
-    // end quiz page?
-    //to access high score page that has local storage
-    //variable for score
-    //variable
-
-//loops we will need:
-    //we will need a loop checking if answer is true
-        //if true timer equals itself
-        //if false timer = timer - X seconds
-            //return timer;
-
-//      function questionFunc() {
-//         for (let i = 0; i < questionAnswers.length; i++) {
-//              let button = questionAnswer[i];
-        //         if (button === true) {
-        //                score += 1;
-        //             timer = timer + 5;
-        //         } else {
-        //             timer = timer - 5;
-        //         }
-        //     }
-//
-//     return timer;
-// }
-
-    //we will need a loop that goes through the questions
-        //questions must be stored in an array
-        //loop through and as index increments JS populates page
-            // for (let i = 0; i <= questions.length; i++) { //1-10 affect questions 11 is end quiz showing score 12 is high score page
-            //     if (i <= 10) {
-            //         //populate array[i];
-            //             if (button = false) {
-            //                 timer = timer - 5seconds
-            //             }
-            //     } else if (i === 11) {
-            //             populate end quiz with total score
-            //     } else if (i === 12) {
-            //             score.localStorage();
-            //             go to score page
-            //     }
-            // }
- 
+function displayScore() {
+    scoreDiv.style.display = "block";
+    document.getElementById("userInitials").innerText = "score: " + rightAnswer;
+    
+}
