@@ -16,19 +16,27 @@ console.log(correctAnswer);
 var highScoreDiv = document.querySelector('.highScoreDiv');
 //variable for start button
 var startBtn = document.getElementById('start');
-var userInitials = document.getElementById('userInitials');
-var scoreButton = document.getElementById('scoreButton');
+//variable to compare questionArr to
 var currentQuestion = -1;
 console.log(startBtn);
+//correct answer variable
 var rightAnswer = 0;
+//wronganswer variable
 var wrongAnswer = 0;
+//div that contains the button to submit score
 var scoreDiv = document.getElementById('totalScore');
+//input field for user initials
+var userInitials = document.getElementById('userInitials');
+//button to submit initials
+var scoreButton = document.getElementById('scoreButton');
+//hiding the div that contains 3 elements above
 scoreDiv.style.display = "none";
-// pElement.style.display = "none";
-// highScoreTitle.style.display = "none";
-
+//trying to hide - when hiding this div EVERYTHING shows up on page
 highScoreDiv.style.display = "none";
 
+//---------------------------------------------------------------------------------------------//
+
+//functions that go through variables and to next question and log incorrect/correct answers
 questionArr.forEach(function (element) {
     element.style.display = "none";
 })
@@ -44,6 +52,13 @@ wrongEl.forEach(function (element) {
 correctAnswer.forEach(function (element) {
     element.addEventListener("click", correctAns)
 })
+// end of above comment
+
+
+//---------------------------------------------------------------------------------------------//
+
+            
+//function hides and shows then rehides questions
 function displayQuestions() {
     if (currentQuestion >= 0) {
         questionArr[currentQuestion].style.display = "none";
@@ -59,24 +74,36 @@ function displayQuestions() {
         displayScore();
     }
 }
+//end of line 54 comment
 
+
+//---------------------------------------------------------------------------------------------//
+
+
+//function that logs incorrect answer
 function incorrectAns() {
     wrongAnswer++;
     displayQuestions();
 }
-
+//function that logs correct answer
 function correctAns() {
     rightAnswer++;
     displayQuestions();
 }
+//end of scoring functions
 
+
+//---------------------------------------------------------------------------------------------//
+
+
+//function that shows score, user iitial input and button to submit initials to tolocaalstorage
 function displayScore() {
     scoreDiv.style.display = "block";
     document.getElementById("userScore").innerText = "score: " + rightAnswer;
 }
 
 function savedScore() {
-
+    highScoreDiv.style.display = "block";
 }
 
 scoreButton.addEventListener('click', function () {
