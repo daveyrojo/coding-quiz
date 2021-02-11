@@ -13,7 +13,9 @@ console.log(wrongAnswer);
 var correctAnswer = document.querySelectorAll('.right');
 console.log(correctAnswer);
 //high score list
-var highScoreDiv = document.querySelector('.highScoreDiv');
+var highScoreDiv = document.querySelector('#highScoreDiv');
+//element to add highScores to
+var highScoreListEl = document.querySelector('#hsList');
 //variable for start button
 var startBtn = document.getElementById('start');
 //variable to compare questionArr to
@@ -33,7 +35,12 @@ var scoreButton = document.getElementById('scoreButton');
 scoreDiv.style.display = "none";
 //trying to hide - when hiding this div EVERYTHING shows up on page
 highScoreDiv.style.display = "none";
-
+//variable for timer element
+var timerElement = document.querySelector('.timer-count');
+//variable for the timer count
+var timerCount = 60;
+//variable for the timer itself
+var time;
 //---------------------------------------------------------------------------------------------//
 
 //functions that go through variables and to next question and log incorrect/correct answers
@@ -43,6 +50,7 @@ questionArr.forEach(function (element) {
 
 startBtn.addEventListener("click", function () {
     startBtn.style.display = "none";
+    startTimer();
     displayQuestions();
 });
 wrongEl.forEach(function (element) {
@@ -76,6 +84,19 @@ function displayQuestions() {
 }
 //end of line 54 comment
 
+//function for timer
+
+function startTimer() {
+    timer = setInterval(() => {
+        timerCount--;
+        timerElement.textContent = timerCount;
+        console.log(timerElement.textContent);
+        if (timerCount <= 0) {
+            clearInterval(timer);
+            alert('Time has expired!');
+        }
+    }, 1000);
+}
 
 //---------------------------------------------------------------------------------------------//
 
@@ -83,11 +104,13 @@ function displayQuestions() {
 //function that logs incorrect answer
 function incorrectAns() {
     wrongAnswer++;
+    timerCount = timerCount - 10;
     displayQuestions();
 }
 //function that logs correct answer
 function correctAns() {
     rightAnswer++;
+     
     displayQuestions();
 }
 //end of scoring functions
@@ -107,14 +130,26 @@ function savedScore() {
 }
 
 scoreButton.addEventListener('click', function () {
+
     var user = userInitials.value;
     var highScores = JSON.parse(localStorage.getItem('previousScores')) || []
     highScores.push({
-        user: user,
+        userInit: user,
         score: rightAnswer
     });
+    scoreDiv.style.display = "none";
+    highScoreDiv.style.display = "block";
     console.log(highScores);
+    // for (let i = 0; i < highScores.length; i++ ) {
+    //     scoreString += 'Player: ' + highScores.userInit + ' ' + 'Score: ' + highScores.score l
+    // }
+
+    //returns array with objects in it of user and score
+    highScoreListEl.innerHTML = JSON.stringify(highScores);
+    // is printing the players initials and score that JUST played
+    // highScoreListEl.innerHTML = 'Player: ' + user + ' ' + 'Score: ' + rightAnswer;
 })
+
 
 
 
