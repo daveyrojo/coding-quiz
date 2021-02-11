@@ -79,6 +79,7 @@ function displayQuestions() {
 
     else {
         console.log('rightAnswer, wrongAnswer', rightAnswer, wrongAnswer);
+        clearInterval(timer);
         displayScore();
     }
 }
@@ -94,9 +95,7 @@ function startTimer() {
         if (timerCount <= 0) {
             clearInterval(timer);
             alert('Time has expired!');
-        } else if (questionArr[currentQuestion] = questionArr.length - 1) {
-            clearInterval(timer);
-        }
+        } 
     }, 1000);
 }
 
@@ -129,7 +128,6 @@ function displayScore() {
 
 function savedScore(highScores) {
     highScoreDiv.style.display = "block";
-
     localStorage.setItem('previousScores', JSON.stringify(highScores));
 }
 

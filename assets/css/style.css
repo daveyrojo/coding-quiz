@@ -6,9 +6,11 @@
 body{
     text-align: center;
     justify-content: center;
-    border: 5px solid black;
+    border: 5px solid white;
     margin: 20px;
     padding: 15px;
+    text: black;
+    background: rgba(65, 62, 62, 0.514) ;
 }
 
 li {
