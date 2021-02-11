@@ -94,6 +94,8 @@ function startTimer() {
         if (timerCount <= 0) {
             clearInterval(timer);
             alert('Time has expired!');
+        } else if (questionArr[currentQuestion] = questionArr.length - 1) {
+            clearInterval(timer);
         }
     }, 1000);
 }
@@ -125,29 +127,32 @@ function displayScore() {
     document.getElementById("userScore").innerText = "score: " + rightAnswer;
 }
 
-function savedScore() {
+function savedScore(highScores) {
     highScoreDiv.style.display = "block";
+
+    localStorage.setItem('previousScores', JSON.stringify(highScores));
 }
 
 scoreButton.addEventListener('click', function () {
-
+    highScoreListEl.innerHTML = '';
+    var counter = 0; 
     var user = userInitials.value;
     var highScores = JSON.parse(localStorage.getItem('previousScores')) || []
     highScores.push({
         userInit: user,
         score: rightAnswer
     });
+    savedScore(highScores);
     scoreDiv.style.display = "none";
     highScoreDiv.style.display = "block";
     console.log(highScores);
-    // for (let i = 0; i < highScores.length; i++ ) {
-    //     scoreString += 'Player: ' + highScores.userInit + ' ' + 'Score: ' + highScores.score l
-    // }
-
-    //returns array with objects in it of user and score
-    highScoreListEl.innerHTML = JSON.stringify(highScores);
-    // is printing the players initials and score that JUST played
-    // highScoreListEl.innerHTML = 'Player: ' + user + ' ' + 'Score: ' + rightAnswer;
+    for (let i = highScores.length - 1; i >=0; i--) {
+        if (counter === 10) {
+            return;
+        }
+        highScoreListEl.innerHTML += "Player: " + highScores[i].userInit + " Score: " + highScores[i].score + '<br>';
+        counter++;
+    } 
 })
 
 
