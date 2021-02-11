@@ -76,7 +76,6 @@ function displayQuestions() {
         questionArr[currentQuestion].style.display = "block";
 
     }
-
     else {
         console.log('rightAnswer, wrongAnswer', rightAnswer, wrongAnswer);
         clearInterval(timer);

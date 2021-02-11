@@ -23,3 +23,11 @@ THEN the game is over
 WHEN the game is over
 THEN I can save my initials and my score
 ```
+## Achieved
+
+I achieved all the goals above. However, my styling left much to besired. I did struggle to get the timer to end the quiz when it ran down to zero.
+
+## Screen Shots
+![Opening Screen Shot](assets/img/firstpage.png)
+![Question](assets/img/question.png)
+![Ending](assets/img/highscore.png)
